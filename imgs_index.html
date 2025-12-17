@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
     <title>Display Photo and Information</title>
@@ -9,18 +9,10 @@
             margin: 40px;
         }
 
-        #searchBox {
-            width: 300px;
-            height: 35px;
-            font-size: 16px;
-            padding-left: 10px;
-            margin-bottom: 12px;
-        }
-
         .container {
             display: flex;
-            margin-top: 30px;
             gap: 40px;
+            margin-top: 30px;
         }
 
         .photo-box, .info-box {
@@ -40,137 +32,121 @@
             display: none;
         }
 
+        /* Special James styling */
         .photo-james {
-            border: 6px solid gold !important; 
-            padding: 5px;
-            border-radius: 0 !important;
             width: 240px !important;
             height: 260px !important;
+            border-radius: 0 !important;
+            border: 6px solid gold !important;
+            padding: 5px;
         }
 
         .photo-james-blue {
-            width: 240px !important;
-            height: 260px !important;
             border: 6px solid #1e90ff !important;
-            padding: 5px;
-            border-radius: 0 !important;
             box-shadow: 0 0 20px #1e90ff;
-            animation: jamesBlueGlow 1s infinite alternate ease-in-out;
+            animation: glow 1s infinite alternate;
         }
 
-        @keyframes jamesBlueGlow {
-            0%   { box-shadow: 0 0 10px #1e90ff; }
-            100% { box-shadow: 0 0 40px #1e90ff, 0 0 80px #00bfff; }
+        @keyframes glow {
+            from { box-shadow: 0 0 10px #1e90ff; }
+            to   { box-shadow: 0 0 40px #00bfff; }
         }
 
         .title {
-            font-weight: bold;
             font-size: 18px;
+            font-weight: bold;
         }
     </style>
 </head>
 
 <body>
 
-    <h2>Select a Name to Display Photo & Info</h2>
+<h2>Select a Name to Display Photo & Info</h2>
 
-    <select id="nameSelect" onchange="showDetails()" style='height:40px; width:320px;'>
-        <option value="">-- Select Name --</option>
+<select id="nameSelect" onchange="showDetails()" style="height:40px;width:320px;">
+    <option value="">-- Select Name --</option>
 
-        <option value="yash">Yashwanth Reddy(Ntng)</option>
+    <option value="yash">Yashwanth Reddy</option>
+    <option value="guido">Guido van Rossum</option>
+    <option value="dennis">Dennis Ritchie</option>
+    <option value="james">James Gosling</option>
+    <option value="stroustrup">Bjarne Stroustrup</option>
+    <option value="juergen">Juergen Hoeller</option>
+    <option value="krishna">E Krishna Rao Patro</option>
+    <option value="madhu">B. Madhusudhan Rao</option>
 
-        <option value="guido">Guido van Rossum (Python)</option>
-        <option value="dennis">Dennis M. Ritchie (C)</option>
-        <option value="james">James Gosling (Java)</option>
-        <option value="stroustrup">Bjarne Stroustrup (C++)</option>
-        <option value="juergen">Juergen Hoeller (Spring Framework)</option>
-        <option value="krishna">E Krishna Rao Patro (JFS Trainer)</option>
+    <option value="bill_gates">Bill Gates</option>
+    <option value="steve_jobs">Steve Jobs</option>
+    <option value="elon_musk">Elon Musk</option>
+    <option value="zukerberg">Mark Zuckerberg</option>
+    <option value="linus_torvalds">Linus Torvalds</option>
+    <option value="tim_berner">Tim Berners-Lee</option>
+    <option value="Sundar_Pichai">Sundar Pichai</option>
+    <option value="satyanadella">Satya Nadella</option>
+    <option value="AdaLovelace">Ada Lovelace</option>
+</select>
 
-        <option value="bill_gates">Bill Gates (Microsoft)</option>
-        <option value="steve_jobs">Steve Jobs (Apple)</option>
-        <option value="elon_musk">Elon Musk (Tesla/SpaceX)</option>
-        <option value="zukerberg">Mark Zuckerberg (Facebook)</option>
-        <option value="linus_torvalds">Linus Torvalds (Linux)</option>
-        <option value="tim_berner">Tim Berners-Lee (WWW)</option>
-        <option value="Sundar_Pichai">Sundar Pichai (Google CEO)</option>
-        <option value="satyanadella">Satya Nadella (Microsoft CEO)</option>
-        <option value="AdaLovelace">Ada Lovelace (1st Programmer)</option>
-        <option value="madhu">Madhu (JFS Trainer, CDC, IARE Hyderabad)</option>
+<div class="container">
 
-
-        
-
-    </select>
-
-    <div class="container">
-
-        <div class="photo-box">
-            <img id="photo" src="" alt="Person Photo">
-        </div>
-
-        <div class="info-box" id="infoBox">
-            <span class="title">Person Information</span>
-            <p id="infoText">Please select a person from the dropdown.</p>
-        </div>
-
+    <div class="photo-box">
+        <img id="photo" alt="Person Photo">
     </div>
 
-    <script>
+    <div class="info-box">
+        <span class="title">Person Information</span>
+        <p id="infoText">Please select a person from the dropdown.</p>
+    </div>
 
+</div>
+
+<script>
 function showDetails() {
-    let name = document.getElementById("nameSelect").value;
 
-    let photo = document.getElementById("photo");
-    let info = document.getElementById("infoText");
+    const name  = document.getElementById("nameSelect").value;
+    const photo = document.getElementById("photo");
+    const info  = document.getElementById("infoText");
 
-    photo.classList.remove("photo-james");
-    photo.classList.remove("photo-james-blue");
+    photo.className = "";
 
-    let photos = {
+    const photos = {
+        "yash": "yash.jpg",
+        "guido": "guido.jpg",
+        "dennis": "dennis.jpg",
+        "james": "james.jpg",
+        "stroustrup": "stroustrup.jpg",
+        "juergen": "Juergen.jpg",
+        "krishna": "krishna.jpg",
+        "madhu": "madhu.jpg",
 
-        "yash": "images/yash.jpg",
-        "guido": "images/guido.jpg",
-        "dennis": "images/dennis.jpg",
-        "james": "images/james.jpg",
-        "stroustrup": "images/stroustrup.jpg",
-        "juergen": "images/juergen.jpg",
-        "krishna": "images/krishna.jpg",
-
-        "bill_gates": "images/bill_gates.jpg",
-        "steve_jobs": "images/steve_jobs.jpg",
-        "elon_musk": "images/elon_musk.jpg",
-        "zukerberg": "images/zukerberg.jpg",
-        "linus_torvalds": "images/linus_torvalds.jpeg",
-        "tim_berner": "images/tim_berner.jpg",
-        "Sundar_Pichai": "images/Sundar_Pichai.jpg",
-        "satyanadella": "images/satyanadella.jpg",                
-        "AdaLovelace": "images/AdaLovelace.jpg",
-        "madhu": "images/madhu.jpg",
-
-        
+        "bill_gates": "bill_gates.jpg",
+        "steve_jobs": "steve_jobs.jpg",
+        "elon_musk": "elon_musk.jpg",
+        "zukerberg": "zukerberg.jpg",
+        "linus_torvalds": "linus_torvalds.jpg",
+        "tim_berner": "tim_berner.jpg",
+        "Sundar_Pichai": "Sundar_Pichai.jpg",
+        "satyanadella": "satyanadella.jpg",
+        "AdaLovelace": "AdaLovelace.jpg"
     };
 
-    let details = {
-
-        "yash": "Yashwanth Reddy - 23951A66Q9, AIML SECTION A.",
-
-        "guido": "Guido van Rossum created Python in 1991.",
-        "dennis": "Dennis Ritchie developed C and co-created UNIX.",
-        "james": "James Gosling invented Java in 1995.",
+    const details = {
+        "yash": "Yashwanth Reddy – 23951A66Q9, AIML Section A.",
+        "guido": "Guido van Rossum created Python.",
+        "dennis": "Dennis Ritchie developed C language.",
+        "james": "James Gosling invented Java.",
         "stroustrup": "Bjarne Stroustrup created C++.",
-        "juergen": "Juergen Hoeller is the co-creator of Spring Framework.",
-        "krishna": "E Krishna Rao Patro — JFS Trainer.",
-        "madhu": "B. Madhusudhan Rao — JFS Trainer.",
+        "juergen": "Juergen Hoeller co-created Spring Framework.",
+        "krishna": "E Krishna Rao Patro – JFS Trainer.",
+        "madhu": "B. Madhusudhan Rao – JFS Trainer.",
         "bill_gates": "Bill Gates co-founded Microsoft.",
         "steve_jobs": "Steve Jobs co-founded Apple.",
-        "elon_musk": "Elon Musk leads Tesla & SpaceX.",
+        "elon_musk": "Elon Musk leads Tesla and SpaceX.",
         "zukerberg": "Mark Zuckerberg founded Facebook.",
         "linus_torvalds": "Linus Torvalds created Linux.",
         "tim_berner": "Tim Berners-Lee invented the World Wide Web.",
         "Sundar_Pichai": "Sundar Pichai is the CEO of Google.",
         "satyanadella": "Satya Nadella is the CEO of Microsoft.",
-        "AdaLovelace": "Ada Lovelace was the first computer programmer.",
-        
+        "AdaLovelace": "Ada Lovelace was the first computer programmer."
     };
 
     if (name === "") {
@@ -184,12 +160,10 @@ function showDetails() {
     info.innerHTML = details[name];
 
     if (name === "james") {
-        photo.classList.add("photo-james");
-        photo.classList.add("photo-james-blue");
+        photo.classList.add("photo-james", "photo-james-blue");
     }
 }
-
-    </script>
+</script>
 
 </body>
 </html>
